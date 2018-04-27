@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  section.container
+    h1.header= title               
+    article.item
+      div      
+      if(data.length)                                              
+        table.table
+          tr
+            th Bases de Datos            
+          each campo in data                                                             
+            tr                
+              td #{campo.Tables_in_empresa} 
+              td #{campo.Tables_in_indentation_war} 
+              td #{campo.Tables_in_information_schema} 
+              td #{campo.Tables_in_mer} 
+              td #{campo.Tables_in_mysql}
+              td #{campo.Tables_in_performance_schema}
+              td #{campo.Tables_in_phpmyadmin}
+              td #{campo.Tables_in_prueba}
+              td #{campo.Tables_in_universidad}                          
+      else
+        div.error No tienes data que mostrar    	
+      a.button.show(href='/VerDb') Ver Bases de datos

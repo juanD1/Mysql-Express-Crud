@@ -1,0 +1,23 @@
+{
+  "name": "crud-nodejs-mysql",
+  "version": "1.0.0",
+  "description": "En este proyecto desaarrollare una aplicacion web CRUD con Node.js, express  y MySQL",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "supervisor app.js"
+  },
+  "author": "Juan David Coronado Saldaña",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-myconnection": "^1.0.4",    
+    "mysql": "^2.11.1",
+    "pug": "^2.0.0-rc.4",
+    "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {
+    "supervisor": "^0.11.0"
+  }
+}

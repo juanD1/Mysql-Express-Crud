@@ -1,0 +1,21 @@
+extends layout.pug
+
+block content
+  section.container
+    h1.header= title
+    img(src="indentation-war.png")        
+    article.item
+      div      
+      if(data.length)                               
+        table.table
+          tr
+            th Bases de Datos            
+          each campo in data                                                             
+            tr  
+              td #{campo.Database}
+              td
+                form.form(method='post', action='/verTables/' + campo.Database)                          
+                  input.button.verDb(type="submit" value="Ver Tablas") 
+      else
+        div.error No tienes data que mostrar    	
+      a.button.show(href='/') Inicio

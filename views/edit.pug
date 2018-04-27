@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  section.container
+    h1.header= title
+    article.item
+      form.from(method="post", action="/actualizar/" + data[0].id)                  
+          input(type="hidden", name="id", value=data[0].id)
+          fieldset
+            div
+              input(type="text", name="name", placeholder="nombre", value=data[0].name, required)
+            div
+              input.button.edit(type="submit", value="Editar")    
+    a.button.show(href="/") Inicio  

@@ -1,0 +1,29 @@
+extends layout
+
+block content  
+  section.container 
+    h1.header= title
+    img(src="indentation-war.png")
+    article.item
+      div
+        a.button.add(href="/agregar") Agregar
+        a.button.verDb(href="/verDb") Ver Bases de datos
+      if(data.length)                               
+        table.table
+          tr
+            th id
+            th campo
+          each contacto in data                                                             
+            tr  
+              td #{contacto.id}                                                              
+              td #{contacto.name}                                                              
+              td
+                a.button.edit(href='/editar/' + contacto.id) Editar
+              td 
+                form(method="post", action="/eliminar/" + contacto.id)
+                  input.button.delete(type='submit', value='Eliminar')                								
+      else
+        div.error No tienes data que mostrar
+
+              
+              

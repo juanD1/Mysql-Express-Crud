@@ -1,5 +1,6 @@
 const express = require('express'),
 			router = express.Router()
+			conn = require('../libs/db-connection')
 
 app.get('/', (req, res, next) => {
 	req.getConnection((err, conn) => {

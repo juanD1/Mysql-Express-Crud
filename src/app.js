@@ -6,17 +6,7 @@ const express = require('express'),
       favicon = require('serve-favicon') (`${__dirname}/public/favicon.png`),
       publicDir = express.static(`${__dirname}/public`),
       viewDir = `${__dirname}/views`,
-      port = (process.env.PORT || 3000),
-      mysql = require('mysql'),
-      myConnection = require('express-myconnection'),
-      dbOptions = {
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'indentation_war',
-        port: 3306
-      },
-      conn = myConnection(mysql, dbOptions, 'request');
+      port = (process.env.PORT || 3000)     
 
 const app = express(),
 			indexRoutes = require('./routes/')

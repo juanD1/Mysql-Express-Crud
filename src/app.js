@@ -23,8 +23,6 @@ const publicDir = express.static(`${__dirname}/public`)
 
 let app = express()
 
-const indexRoutes = require('./routes/')
-
 //Settings
 app.set('port', process.env.PORT || 3000)
 app.set('views', path.join(__dirname,'views' ))

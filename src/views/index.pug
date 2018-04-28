@@ -1,29 +1,26 @@
 extends layout
 
-block content  
-  section.container 
-    h1.header= title
-    img(src="indentation-war.png")
-    article.item
-      div
-        a.button.add(href="/agregar") Agregar
-        a.button.verDb(href="/verDb") Ver Bases de datos
-      if(data.length)                               
-        table.table
-          tr
-            th id
-            th campo
-          each contacto in data                                                             
-            tr  
-              td #{contacto.id}                                                              
-              td #{contacto.name}                                                              
-              td
-                a.button.edit(href='/editar/' + contacto.id) Editar
-              td 
-                form(method="post", action="/eliminar/" + contacto.id)
-                  input.button.delete(type='submit', value='Eliminar')                								
-      else
-        div.error No tienes data que mostrar
-
-              
-              
+block content
+	section.container
+		h1.header= title
+		img(src="indentation-war.png")
+		article.item
+			div
+				a(class="btn btn-success" href="/agregar") Agregar		
+				a(class="btn btn-primary" href="/verDb") Ver Bases de datos
+				if(data.length)
+					table(class='table table-bordered table-hover')
+						tr
+							th id
+							th campo
+						each contacto in data
+							tr
+								td #{contacto.id}
+								td #{contacto.name}
+								td
+									a(class="btn btn-warning"  style='color: white' href='/editar/' + contacto.id) Editar
+								td
+									form(method="post", action="/eliminar/" + contacto.id)
+										input(class="btn btn-danger" type='submit' value='Eliminar')
+				else
+					div.error No tienes data que mostrar         

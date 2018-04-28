@@ -6,7 +6,7 @@ block content
     article.item
       div      
       if(data.length)                                              
-        table.table
+        table(class='table table-bordered table-hover')
           tr
             th Bases de Datos            
           each campo in data                                                             
@@ -22,4 +22,4 @@ block content
               td #{campo.Tables_in_universidad}                          
       else
         div.error No tienes data que mostrar    	
-      a.button.show(href='/VerDb') Ver Bases de datos
+      a(class="btn btn-dark" href='/VerDb') Ver Bases de datos

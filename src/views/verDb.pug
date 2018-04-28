@@ -7,7 +7,7 @@ block content
     article.item
       div      
       if(data.length)                               
-        table.table
+        table(class='table table-bordered table-hover')
           tr
             th Bases de Datos            
           each campo in data                                                             
@@ -15,7 +15,7 @@ block content
               td #{campo.Database}
               td
                 form.form(method='post', action='/verTables/' + campo.Database)                          
-                  input.button.verDb(type="submit" value="Ver Tablas") 
+                  input(class="btn btn-success" type="submit" value="Ver Tablas") 
       else
         div.error No tienes data que mostrar    	
-      a.button.show(href='/') Inicio
+      a(class="btn btn-dark" href='/') Inicio

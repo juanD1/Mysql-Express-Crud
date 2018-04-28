@@ -1,4 +1,4 @@
-extends layout
+extends layout.pug
 
 block content
   section.container
@@ -8,7 +8,7 @@ block content
           input(type="hidden", name="id", value=data[0].id)
           fieldset
             div
-              input(type="text", name="name", placeholder="nombre", value=data[0].name, required)
+              input(class='form-control' type="text", name="name", placeholder="nombre", value=data[0].name, required)
             div
-              input.button.edit(type="submit", value="Editar")    
-    a.button.show(href="/") Inicio  
+              input(class="btn btn-warning" style='color: white' type="submit", value="Editar")    
+    a(class="btn btn-dark" href="/") Inicio  

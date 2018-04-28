@@ -5,10 +5,10 @@ block content
     h1.header= title
     img(src="indentation-war.png")   
     article.item
-      form.form(method='post', action='/')
+      form(method='post', action='/')
         fieldset
           div
-            input(type='text', name='id',placeholder='id', required)
-            input(type='text', name='name',placeholder='nombre', required)
-            input.button.add(type="submit", value="Agregar")
-    a.button.show(href='/') Inicio	
+            input(class='form-control' type='text', name='id',placeholder='id', required)
+            input(class='form-control' type='text', name='name',placeholder='nombre', required)
+            input(class="btn btn-success" type="submit", value="Agregar")
+    a(class="btn btn-dark" href='/') Inicio	

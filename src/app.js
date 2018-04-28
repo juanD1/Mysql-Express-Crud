@@ -1,6 +1,5 @@
 //Dependencies
 const path = require('path')
-
 const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
@@ -33,9 +32,8 @@ app.set('view engine', 'pug')
 
 //Middlewares
 app.use(logger('dev'))
-app.use(express.json())
+app.use( bodyParser.json())
 app.use( bodyParser.urlencoded({ extended: false }) )
-app.use( bodyParser.json() )
 app.use( publicDir )
 app.use( favicon )
 
@@ -43,19 +41,138 @@ app.use( favicon )
 app.use(conn)
 
 //Routes
-app.use('/', indexRoutes.list)
-app.use('/agregar', indexRoutes.add)
+app.get('/', (req, res, next) => {
+  req.getConnection((err, conn) => {
+    conn.query('use indentation_war', (error, data) => {  //data:data   
+      conn.query('select * from team', (error, data) => {  //data:data
+        if (!error) {
+          res.render('index', {
+            title: 'Identation Ward',
+            data: data  
+          })        
+          console.log(data)               
+        } else {
+          console.log("ERROR: ", error )
+        }
+      })
+    }) 
+    })
+})
+
+app.get('/agregar', (req, res, next) => {
+	res.render('add',{ title: 'Agregar Contacto' });
+});
+
+app.get('/verDb', (req, res, next) => {
+	req.getConnection((err, conn) => {
+    conn.query('show databases', (error, data) => {  //data:data
+      if (!error) {
+        res.render('verDb', {
+          title: 'Ver Bases de Datos',
+          data: data  
+        })        
+        console.log(data)               
+      } else {
+        console.log("ERROR: ", error )
+      }
+    })
+  })
+});
+
+app.post('/verTables/:Database', (req, res, next) => {
+	req.getConnection((err, conn) => {
+    let Database = req.params.Database			    
+      conn.query('SHOW TABLES FROM ' + Database, (error, data) => {  //data:data
+        if (!error) {
+          res.render('verTables', {
+            title: "Tables_in_" + Database,
+            data: data  
+          })        
+          console.log(data)               
+        } else {
+          console.log("ERROR: ", error )
+        }
+      })
+    })      
+});
 
 
-// app.use((req, res, next) => {
-//   let err = new Error();
-// 	err.status = 404;
-// 	err.statusText = 'NOT FOUND';
+app.post('/', (req, res, next) => {
+	req.getConnection((err, conn) => {
+		let contacto = {
+			id: req.body.id,
+			name: req.body.name
+		};
 
-// 	res.render('error', {error: err});
-// });
+		conn.query('INSERT INTO team SET ?', contacto, (err, data) => {
+			if(!err) {
+				res.redirect('/');
+			} else {
+				res.redirect('/agregar');
+			}
+		});
+	});
+});
+
+app.get('/editar/:id', (req, res, next) => {
+	let id =req.params.id
+
+	req.getConnection((err, conn) => {
+		conn.query('SELECT * FROM team WHERE id = ?', id, (err, data) => {
+			if(!err) {
+				res.render('edit', {
+					title: 'Editar Contacto',
+					data: data
+        });
+        console.log("edit: ",data)
+			}
+		});
+	});
+});
+
+app.post('/actualizar/:id', (req, res, next) => {
+  console.log("actualizar")
+	req.getConnection((err, conn) => {
+		let contacto = {
+			id: req.body.id,
+			name: req.body.name
+		};		
+		conn.query('UPDATE team SET name = ? WHERE id = ?', [contacto.name, contacto.id],(err, data) => {
+			if(!err) {
+				res.redirect('/');
+			} else {
+        res.redirect('/editar/');
+        console.log("error: ", err)        
+			}
+		});
+	});
+});
+
+app.post('/eliminar/:id', (req, res, next) => {
+	req.getConnection((err, conn) => {
+		let id = req.params.id;
+
+		conn.query('DELETE FROM team WHERE id = ?', id, (err, data) => {
+			if(!err) {
+				res.redirect('/');
+			} else {
+				return next(new Error('Registro no encontrado'));
+			}
+		});
+	});
+});
+
+app.use((req, res, next) => {
+  let err = new Error();
+	err.status = 404;
+	err.statusText = 'NOT FOUND';
+
+	res.render('error', {error: err});
+});
 
 
 app.listen(app.get('port'), () => {
 	console.log('server Crud-MySQL-express on port ', app.get('port'))
 })
+
+

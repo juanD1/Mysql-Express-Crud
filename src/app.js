@@ -19,8 +19,8 @@ const dbOptions = {
 const conn = myConnection(mysql, dbOptions, 'request');
 
 //Assets
-// const favicon = require('serve-favicon') (`${__dirname}/public/favicon.png`)
-// const publicDir = express.static(`${__dirname}/public`)  
+const favicon = require('serve-favicon') (`${__dirname}/public/favicon.png`)
+const publicDir = express.static(`${__dirname}/public`)  
 
 const app = express()
 
@@ -35,15 +35,15 @@ app.set('view engine', 'pug')
 app.use(logger('dev'))
 app.use(express.json())
 app.use( bodyParser.urlencoded({ extended: false }) )
-// app.use( bodyParser.json() )
-// app.use( publicDir )
-// app.use( favicon )
+app.use( bodyParser.json() )
+app.use( publicDir )
+app.use( favicon )
 
 //Connection
 app.use(conn)
 
 //Routes
-app.use('/',indexRoutes)
+app.use('/', indexRoutes.list)
 
 
 // app.use((req, res, next) => {

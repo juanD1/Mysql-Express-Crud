@@ -1,25 +1,46 @@
-const express = require('express')
-const app = express()
-
-// const conn = require('../libs/db-connection').defaul
-
-app.get('/', (req, res) => {
+exports.list = (req, res) => {
 	req.getConnection((err, conn) => {
-		conn.query('use indentation_war', (error, conn) => {  //data:data   
-			conn.query('select * from team', (error, data) => {  //data:data
-				if (!error) {
-					res.render('index', {
-						title: 'Identation Ward',
-						data: data  
-					})        
-					console.log(data)               
-				} else {
-					console.log("ERROR: "+ error )
-				}
-			})
-		})
+		conn.query('select * from team', (err, data) => {
+			if(err) throw err
+				res.render('index', {
+					title: 'Identation Ward',
+					data: data
+				})
+			})		
 	})
-})
+}
+
+// app.get('/', (req, res) => {
+// 	req.getConnection((req, conn) => {
+// 		conn.query('select * from team')
+// 		.then((data) => {
+// 			res.render('/',{
+// 				title: 'Identation Ward',
+// 				data: data
+// 			})
+// 		})
+// 		.catch((err) => {
+// 			res.redirect('error')
+// 		})
+// 	})
+// })
+// app.get('/', (req, res) => {
+// 	req.getConnection((err, conn) => {
+// 		conn.query('use indentation_war', (error, conn) => {  //data:data   
+// 			conn.query('select * from team', (error, data) => {  //data:data
+// 				if (!error) {
+// 					res.render('index', {
+// 						title: 'Identation Ward',
+// 						data: data  
+// 					})        
+// 					console.log(data)               
+// 				} else {
+// 					console.log("ERROR: "+ error )
+// 				}
+// 			})
+// 		})
+// 	})
+// })
 			
 // app.get('/agregar', (req, res, next) => {
 // 	res.render('add',{ title: 'Agregar Contacto' });

@@ -1,8 +1,9 @@
-const express = require('express'),
-			router = express.Router()
-			conn = require('../libs/db-connection')
+const express = require('express')
+const router = express.Router()
 
-app.get('/', (req, res, next) => {
+const conn = require('../libs/db-connection')()
+
+router.get('/', (req, res, next) => {
 	req.getConnection((err, conn) => {
 		conn.query('use indentation_war', (error, data) => {  //data:data   
 			conn.query('select * from team', (error, data) => {  //data:data
@@ -20,11 +21,11 @@ app.get('/', (req, res, next) => {
 		})
 })
 			
-app.get('/agregar', (req, res, next) => {
+router.get('/agregar', (req, res, next) => {
 	res.render('add',{ title: 'Agregar Contacto' });
 });
 			
-app.get('/verDb', (req, res, next) => {
+router.get('/verDb', (req, res, next) => {
 	req.getConnection((err, conn) => {
 		conn.query('show databases', (error, data) => {  //data:data
 			if (!error) {
@@ -40,7 +41,7 @@ app.get('/verDb', (req, res, next) => {
 	})
 });
 			
-app.post('/verTables/:Database', (req, res, next) => {
+router.post('/verTables/:Database', (req, res, next) => {
 	req.getConnection((err, conn) => {
 		let Database = req.params.Database			    
 			conn.query('SHOW TABLES FROM '+ Database, (error, data) => {  //data:data
@@ -58,7 +59,7 @@ app.post('/verTables/:Database', (req, res, next) => {
 });
 			
 			
-app.post('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
 	req.getConnection((err, conn) => {
 		let contacto = {
 			id: req.body.id,
@@ -75,7 +76,7 @@ app.post('/', (req, res, next) => {
 	});
 });
 			
-app.get('/editar/:id', (req, res, next) => {
+router.get('/editar/:id', (req, res, next) => {
 	let id =req.params.id
 			
 	req.getConnection((err, conn) => {
@@ -91,7 +92,7 @@ app.get('/editar/:id', (req, res, next) => {
 	});
 });
 			
-app.post('/actualizar/:id', (req, res, next) => {
+router.post('/actualizar/:id', (req, res, next) => {
 	console.log("actualizar")
 	req.getConnection((err, conn) => {
 		let contacto = {
@@ -109,7 +110,7 @@ app.post('/actualizar/:id', (req, res, next) => {
 	});
 });
 			
-app.post('/eliminar/:id', (req, res, next) => {
+router.post('/eliminar/:id', (req, res, next) => {
 	req.getConnection((err, conn) => {
 		let id = req.params.id;
 			

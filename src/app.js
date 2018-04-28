@@ -22,7 +22,7 @@ const conn = myConnection(mysql, dbOptions, 'request');
 const favicon = require('serve-favicon') (`${__dirname}/public/favicon.png`)
 const publicDir = express.static(`${__dirname}/public`)  
 
-const app = express()
+let app = express()
 
 const indexRoutes = require('./routes/')
 
@@ -44,6 +44,7 @@ app.use(conn)
 
 //Routes
 app.use('/', indexRoutes.list)
+app.use('/agregar', indexRoutes.add)
 
 
 // app.use((req, res, next) => {

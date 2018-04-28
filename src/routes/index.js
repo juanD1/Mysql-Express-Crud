@@ -1,4 +1,7 @@
-exports.list = (req, res) => {
+let express = require('express')
+var app = express()
+
+app.get('/',(req, res) => {
 	req.getConnection((err, conn) => {
 		conn.query('select * from team', (err, data) => {
 			if(err) throw err
@@ -8,45 +11,19 @@ exports.list = (req, res) => {
 				})
 			})		
 	})
-}
+})
 
-// app.get('/', (req, res) => {
-// 	req.getConnection((req, conn) => {
-// 		conn.query('select * from team')
-// 		.then((data) => {
-// 			res.render('/',{
-// 				title: 'Identation Ward',
-// 				data: data
-// 			})
-// 		})
-// 		.catch((err) => {
-// 			res.redirect('error')
-// 		})
-// 	})
-// })
-// app.get('/', (req, res) => {
-// 	req.getConnection((err, conn) => {
-// 		conn.query('use indentation_war', (error, conn) => {  //data:data   
-// 			conn.query('select * from team', (error, data) => {  //data:data
-// 				if (!error) {
-// 					res.render('index', {
-// 						title: 'Identation Ward',
-// 						data: data  
-// 					})        
-// 					console.log(data)               
-// 				} else {
-// 					console.log("ERROR: "+ error )
-// 				}
-// 			})
-// 		})
-// 	})
-// })
-			
-// app.get('/agregar', (req, res, next) => {
-// 	res.render('add',{ title: 'Agregar Contacto' });
-// });
-			
-// app.get('/verDb', (req, res, next) => {
+module.exports = app
+
+// exports.add = (req, res) => {
+// 	res.render('/add', { title: 'Agregar Contacto' })
+// }
+
+
+// exports.showDb = (req, res) => {
+
+// }
+// 	('/verDb', (req, res, next) => {
 // 	req.getConnection((err, conn) => {
 // 		conn.query('show databases', (error, data) => {  //data:data
 // 			if (!error) {
@@ -60,7 +37,7 @@ exports.list = (req, res) => {
 // 			}
 // 		})
 // 	})
-// });
+// })
 			
 // app.post('/verTables/:Database', (req, res, next) => {
 // 	req.getConnection((err, conn) => {
@@ -143,4 +120,4 @@ exports.list = (req, res) => {
 // 			}
 // 		});
 // 	});
-// });
+// })

@@ -8,12 +8,13 @@ const bodyParser = require('body-parser')
 //Conecction
 const mysql = require('mysql')
 const myConnection = require('express-myconnection')
+const config = require('./libs/config')
 const dbOptions = {
-			host: 'localhost',
-			user: 'root',
-			password: '',
-			database: 'indentation_war',
-			port: 3306
+			host: config.database.host,
+			user: config.database.user,
+			password: config.database.password,
+			database: config.database.db,
+			port: config.database.port
 		}
 const conn = myConnection(mysql, dbOptions, 'request');
 

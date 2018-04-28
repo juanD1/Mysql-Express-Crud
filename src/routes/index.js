@@ -1,11 +1,11 @@
 const express = require('express')
 const app = express()
 
-// const conn = require('../libs/db-connection').default
+// const conn = require('../libs/db-connection').defaul
 
 app.get('/', (req, res) => {
 	req.getConnection((err, conn) => {
-		conn.query('use indentation_war', (error, data) => {  //data:data   
+		conn.query('use indentation_war', (error, conn) => {  //data:data   
 			conn.query('select * from team', (error, data) => {  //data:data
 				if (!error) {
 					res.render('index', {

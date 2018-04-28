@@ -4,11 +4,25 @@ const path = require('path')
 const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
+
+//Conecction
+const mysql = require('mysql')
+const myConnection = require('express-myconnection')
+const dbOptions = {
+			host: 'localhost',
+			user: 'root',
+			password: '',
+			database: 'indentation_war',
+			port: 3306
+		}
+const conn = myConnection(mysql, dbOptions, 'request');
+
 //Assets
-const favicon = require('serve-favicon') (`${__dirname}/public/favicon.png`)
-const publicDir = express.static(`${__dirname}/public`)  
+// const favicon = require('serve-favicon') (`${__dirname}/public/favicon.png`)
+// const publicDir = express.static(`${__dirname}/public`)  
 
 const app = express()
+
 const indexRoutes = require('./routes/')
 
 //Settings
@@ -18,12 +32,14 @@ app.set('view engine', 'pug')
 
 //Middlewares
 app.use(logger('dev'))
+app.use(express.json())
 app.use( bodyParser.urlencoded({ extended: false }) )
 // app.use( bodyParser.json() )
-app.use( publicDir )
-app.use( favicon )
+// app.use( publicDir )
+// app.use( favicon )
 
-// app.use( conn )
+//Connection
+app.use(conn)
 
 //Routes
 app.use('/',indexRoutes)

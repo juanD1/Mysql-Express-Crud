@@ -1,14 +1,15 @@
 extends layout.pug
 
 block content
-  section.container
-    h1.header= title
-    img(src="indentation-war.png")   
-    article.item
-      form(method='post', action='/')
-        fieldset
-          div
-            input(class='form-control' type='text', name='id',placeholder='id', required)
-            input(class='form-control' type='text', name='name',placeholder='nombre', required)
-            input(class="btn btn-success" type="submit", value="Agregar")
-    a(class="btn btn-dark" href='/') Inicio	
+	section.container
+		h1.header= title
+		img(src="indentation-war.png")
+		article.item
+			form(method='post', action='/')
+				fieldset
+					div
+						input(class='form-control' type='text', name='id',placeholder='id', required)
+						input(class='form-control' type='text', name='name',placeholder='nombre', required)
+					div
+						input(class="btn btn-success" type="submit", value="Agregar")
+		a(class="btn btn-dark" href='/') Inicio	

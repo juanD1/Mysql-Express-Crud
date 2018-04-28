@@ -7,8 +7,8 @@ html {
 }
 
 *, *:after, *:before {
-	box-sizing: inherit;
-	margin: 0;
+	box-sizing: initial;
+	margin: 5px;
 	padding: 0;
 	border: 0;
 }
@@ -33,6 +33,7 @@ input[type="submit"] { cursor: pointer; }
 input[type="text"] {
 	border: thin solid #DDD;
 	font: 1rem sans-serif;
+	margin: 5px;
 	padding: .5rem;
 }
 
@@ -47,44 +48,11 @@ input[type="text"] {
 
 .container {
 	background-color: #FFF;
-	margin: 5% auto 0;
+	/* margin: 10% auto 0; */
 	min-height: 600px;
 	width: 90%;
 }
 
-.item { 
-	padding: 1rem;
-	margin: 1rem;
-}
-
-.button {
-	border: thin solid #292623;
-	color: #EEE;
-	font: 1rem sans-serif;
-	padding: .5rem 1rem;
-}
-
-.button:hover { opacity: .75; }
-
-.add { background-color: #0B0; }
-
-.verDb { background-color: #CD00C9; }
-
-.edit { background-color: #0871B2; }
-
-.delete { background-color: #D23641; }
-
-.show { background-color: #141414; }
-
-.error {
-	background-color: #D23641;
-	border: thin solid #292623;
-	color: #EEE;
-	font-size: 2rem;
-	margin: 2rem auto;
-	padding: 1rem;
-	text-align: center;
-}
 
 .error pre {
 	font-size: 1rem;
@@ -109,7 +77,7 @@ input[type="text"] {
 	text-align: right;
 	width: 20%;
 }
-
+/* 
 .table {
 	border-collapse: collapse;
 	border: thin solid #292623;
@@ -118,13 +86,13 @@ input[type="text"] {
 	width:100%
 }
 
-.table td, .table th { padding: 1rem; }
+.table td, .table th { padding: 1rem; } */
 
-.table tr:first-child { 
+/* .table tr:first-child { 
 	background-color: #292623;
 	color: #EEE;
 }
 
 .table tr:nth-child(even) { background-color: #DDD; }
 
-.table tr:nth-child(odd):not(:first-child) { background-color: #EEE; }
+.table tr:nth-child(odd):not(:first-child) { background-color: #EEE; } */

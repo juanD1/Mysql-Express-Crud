@@ -4,23 +4,25 @@ block content
 	section.container
 		h1.header= title
 		img(src="indentation-war.png")
-		article.item
+		article
 			div
-				a(class="btn btn-success" href="/agregar") Agregar		
-				a(class="btn btn-primary" href="/verDb") Ver Bases de datos
+				a(class='btn btn-success' href='/agregar') Agregar
+				|				
+				a(class='btn btn-primary' href='/verDb' ) Ver Bases de datos						
 				if(data.length)
 					table(class='table table-bordered table-hover')
 						tr
 							th id
 							th campo
+							th acciones
 						each contacto in data
 							tr
 								td #{contacto.id}
-								td #{contacto.name}
+								td #{contacto.name}															
 								td
-									a(class="btn btn-warning"  style='color: white' href='/editar/' + contacto.id) Editar
-								td
-									form(method="post", action="/eliminar/" + contacto.id)
-										input(class="btn btn-danger" type='submit' value='Eliminar')
+									a(class="btn btn-warning"  style='color: white; margin: 5px;' href='/editar/' + contacto.id) Editar
+									a( class="btn btn-danger" href='/eliminar/'+ contacto.id) Eliminar
+									//- form(method="post", action="/eliminar/" + contacto.id)
+									//- 	input(class="btn btn-danger" type='submit' value='Eliminar')
 				else
 					div.error No tienes data que mostrar         

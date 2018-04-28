@@ -146,7 +146,7 @@ app.post('/actualizar/:id', (req, res, next) => {
 	});
 });
 
-app.post('/eliminar/:id', (req, res, next) => {
+app.get('/eliminar/:id', (req, res, next) => {
 	req.getConnection((err, conn) => {
 		let id = req.params.id;
 

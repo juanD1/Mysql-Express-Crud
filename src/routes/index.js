@@ -9,10 +9,7 @@ router.get('/', (req, res) => {
 				res.render('index', {
 				  title: 'CRUD Mysql Express',
 				  data: data  
-				})        
-				console.log(data)               
-			} else {
-				console.log("ERROR: ", error )
+				})        				              
 			}
 		})
 	})
@@ -46,8 +43,7 @@ router.get('/editar/:id', (req, res, next) => {
 				res.render('edit', {
 					title: 'Editar Contacto',
 					data: data
-        })
-        console.log("edit: ",data)
+        })        
 			}
 		})
 	})
@@ -64,8 +60,7 @@ router.post('/actualizar/:id', (req, res, next) => {
 			if(!err) {
 				res.redirect('/')
 			} else {
-        res.redirect('/editar/')
-        console.log("error: ", err)        
+        res.redirect('/editar/')                
 			}
 		})
 	})
@@ -93,8 +88,7 @@ router.get('/verDb', (req, res, next) => {
         res.render('verDb', {
           title: 'Ver Bases de Datos',
           data: data  
-        })        
-        console.log(data)               
+        })                               
       } else {
         console.log("ERROR: ", error )
       }
@@ -105,18 +99,17 @@ router.get('/verDb', (req, res, next) => {
 router.post('/verTables/:Database', (req, res, next) => {
 	req.getConnection((err, conn) => {
     let Database = req.params.Database			    
-      conn.query('SHOW TABLES FROM ' + Database, (error, data) => {  //data:data
-        if (!error) {
-          res.render('verTables', {
-            title: "Tables_in_" + Database,
-            data: data  
-          })        
-          console.log(data)               
-        } else {
-          console.log("ERROR: ", error )
-        }
-      })
-    })      
+    conn.query('SHOW TABLES FROM ' + Database, (error, data) => {  //data:data
+      if (!error) {
+        res.render('verTables', {
+          title: "Tables_in_" + Database,
+          data: data  
+        })                     
+      } else {
+        console.log("ERROR: ", error )
+      }
+    })
+  })      
 })
 //-----Catalogo de datos----- //
 

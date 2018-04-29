@@ -5,7 +5,7 @@ const logger = require('morgan')
 const bodyParser = require('body-parser')
 let Routes = require('./routes/')
 
-//Conecction
+// Conecction
 const mysql = require('mysql')
 const myConnection = require('express-myconnection')
 const config = require('./libs/config')
@@ -16,7 +16,7 @@ const dbOptions = {
 			database: config.database.db,
 			port: config.database.port
 		}
-const conn = myConnection(mysql, dbOptions, 'request');
+let conn = myConnection(mysql, dbOptions, 'request');
 
 //Assets
 const favicon = require('serve-favicon') (`${__dirname}/public/favicon.png`)

@@ -4,7 +4,7 @@ block content
   section.container
     h1.header= title
     article.item
-      form.from(method="post", action="/actualizar/" + data[0].id)                  
+      form.from(method='POST', action="/actualizar/" + data[0].id)                  
           input(type="hidden", name="id", value=data[0].id)
           fieldset
             div

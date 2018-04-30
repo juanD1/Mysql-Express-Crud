@@ -50,7 +50,7 @@ router.get('/editar/:id', (req, res, next) => {
 })
 
 router.post('/actualizar/:id', (req, res, next) => {
-  console.log("actualizar")
+  // console.log("actualizar")
 	req.getConnection((err, conn) => {
 		let contacto = {
 			id: req.body.id,
@@ -64,6 +64,10 @@ router.post('/actualizar/:id', (req, res, next) => {
 			}
 		})
 	})
+})
+
+router.put('/hola', (req, res) => {
+	res.send({type:'PUT'})
 })
 
 router.get('/eliminar/:id', (req, res, next) => {

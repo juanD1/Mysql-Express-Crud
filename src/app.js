@@ -30,11 +30,11 @@ app.set('views', path.join(__dirname,'views' ))
 app.set('view engine', 'pug')
 
 //Middlewares
-app.use(logger('dev'))
+app.use( favicon )
 app.use( bodyParser.json())
 app.use( bodyParser.urlencoded({ extended: false }) )
+app.use(logger('dev'))
 app.use( publicDir )
-app.use( favicon )
 
 //Connection
 app.use(conn)
@@ -42,13 +42,13 @@ app.use(conn)
 //Routes
 app.use('/', Routes)
 
-app.use((req, res, next) => {
-  let err = new Error();
-	err.status = 404;
-	err.statusText = 'NOT FOUND';
+// app.use((req, res, next) => {
+//   let err = new Error();
+// 	err.status = 404;
+// 	err.statusText = 'NOT FOUND';
 
-	res.render('error', {error: err});
-});
+// 	res.render('error', {error: err});
+// });
 
 
 app.listen(app.get('port'), () => {

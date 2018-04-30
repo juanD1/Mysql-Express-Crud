@@ -66,10 +66,6 @@ router.post('/actualizar/:id', (req, res, next) => {
 	})
 })
 
-router.put('/hola', (req, res) => {
-	res.send({type:'PUT'})
-})
-
 router.get('/eliminar/:id', (req, res, next) => {
 	req.getConnection((err, conn) => {
 		let id = req.params.id
